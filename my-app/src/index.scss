@@ -1,0 +1,20 @@
+:root {
+  --secondary-color: rgba(255, 255, 255, 0.85);
+  --text-color: #ffffff;
+  --nav-color: rgba(255, 255, 255, 0.65);
+  --footer-bg: #519bbe;
+  --header-bg: #297395;
+  --header-dark-bg: #0f4964;
+}
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
