@@ -24,6 +24,20 @@ export const noteListActionsCreator = createSlice({
       newArr = newArr.filter((note) => note.id !== action.payload.id);
       state.noteList = JSON.stringify(newArr);
     },
+    changeTitle(state, action: PayloadAction<INote>) {
+      const newArr: INote[] = JSON.parse(state.noteList);
+      newArr.forEach((note) => {
+        if (note.id === action.payload.id) {
+          note.title = action.payload.title;
+        }
+      });
+      state.noteList = JSON.stringify(newArr);
+    },
+    changeDescription(state, action: PayloadAction<INote>) {
+      let newArr: INote[] = JSON.parse(state.noteList);
+      newArr = newArr.filter((note) => note.id !== action.payload.id);
+      state.noteList = JSON.stringify(newArr);
+    },
   },
 });
 
