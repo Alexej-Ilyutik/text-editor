@@ -1,0 +1,17 @@
+.note__container {
+  background-color: var(--secondary-color);
+  border-radius: 0.3rem;
+  padding: 0.6rem 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  color: var(--header-dark-bg);
+  .note__header {
+    border-bottom: 0.05rem solid var(--header-dark-bg);
+    .note__delete {
+      cursor: pointer;
+      padding: 0.3rem;
+    }
+  }
+  .note__description {
+    font-size: 0.8rem;
+  }
+}
