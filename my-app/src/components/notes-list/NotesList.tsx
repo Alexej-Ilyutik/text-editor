@@ -26,7 +26,7 @@ export function NotesList() {
         </div>
         <div className="notes__list-container">
           {JSON.parse(noteList).map((note: INote) => (
-            <Note key={note.id} title={note.title} description={note.description} />
+            <Note key={note.id} note={note} title={note.title} description={note.description} />
           ))}
         </div>
         <div

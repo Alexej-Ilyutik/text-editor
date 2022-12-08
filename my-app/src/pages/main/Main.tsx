@@ -2,7 +2,6 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 
 import { NotesList } from 'components/notes-list/NotesList';
-// import './Main.scss';
 
 export function Main() {
   return (
