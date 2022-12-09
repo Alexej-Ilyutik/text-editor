@@ -11,8 +11,8 @@ import { useTypedSelector } from 'hooks/useTypedSelector';
 import './App.scss';
 
 export function App() {
-  const { noteList } = useTypedSelector((state) => state.noteList);
-  console.log(noteList);
+  // const { noteList } = useTypedSelector((state) => state.noteList);
+  // console.log(noteList);
 
   return (
     <>
