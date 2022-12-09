@@ -4,6 +4,7 @@ import { faClose, faPencil, faLeftLong, faCheck } from '@fortawesome/free-solid-
 
 import { useActions } from 'hooks/useActions';
 import { INote } from 'types/types';
+import { useDeleteNoteMutation } from 'store/notesListApi/notesListApi';
 
 import './Note.scss';
 
@@ -14,14 +15,16 @@ interface INoteProps {
 }
 
 export function Note({ title, description, note }: INoteProps) {
-  const { removeNote, changeTitle } = useActions();
+  // const { removeNote, changeTitle } = useActions();
+  const [deleteNote] = useDeleteNoteMutation();
   const [isEditNote, setIsEditNote] = useState(false);
   const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const handleclick = async (event: React.MouseEvent) => {
     const eTarget = event.target as Element;
     if (eTarget.closest('.note__delete')) {
-      removeNote(note);
+      deleteNote(note.id);
+      // removeNote(note);
     }
   };
 
@@ -30,7 +33,7 @@ export function Note({ title, description, note }: INoteProps) {
   };
 
   const updateValue = () => {
-    changeTitle({ id: note.id, title: inputRef.current.value, description: note.description });
+    // changeTitle({ id: note.id, title: inputRef.current.value, description: note.description });
     changeEditMode();
   };
 
