@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { Note } from 'components/note/Note';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
@@ -14,7 +14,6 @@ import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
 import './NotesList.scss';
 
 export function NotesList() {
-  // const { noteList } = useTypedSelector((state) => state.noteList);
   const { isLoading, isError, data: noteList } = useGetNotesListQuery();
   const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false);
 

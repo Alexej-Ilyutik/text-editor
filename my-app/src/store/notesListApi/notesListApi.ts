@@ -31,7 +31,20 @@ export const notesListApi = createApi({
       }),
       invalidatesTags: ['NoteTag'],
     }),
+    updateNote: builder.mutation<INote, { id: number; title: string; description: string }>({
+      query: ({ id, title, description }) => ({
+        url: `noteList/${id}`,
+        method: 'PUT',
+        body: { title: title, description: description },
+      }),
+      invalidatesTags: ['NoteTag'],
+    }),
   }),
 });
 
-export const { useGetNotesListQuery, useCreateNoteMutation, useDeleteNoteMutation } = notesListApi;
+export const {
+  useGetNotesListQuery,
+  useCreateNoteMutation,
+  useDeleteNoteMutation,
+  useUpdateNoteMutation,
+} = notesListApi;
