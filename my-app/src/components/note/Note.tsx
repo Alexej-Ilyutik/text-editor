@@ -18,9 +18,11 @@ export function Note({ title, description, note }: INoteProps) {
   const [changeTitle] = useUpdateNoteMutation();
 
   const [isEditNote, setIsEditNote] = useState(false);
+  // const [highlighted, setHighlighted] = useState('');
+  const [text, setText] = useState(description);
   const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 
-  const handleclick = async (event: React.MouseEvent) => {
+  const handleclick = (event: React.MouseEvent) => {
     const eTarget = event.target as Element;
     if (eTarget.closest('.note__delete')) {
       deleteNote(note.id);
@@ -36,6 +38,33 @@ export function Note({ title, description, note }: INoteProps) {
     changeEditMode();
   };
 
+  const handleChange = function (e: React.KeyboardEvent<HTMLInputElement>) {
+    const eTarget = e.target as HTMLInputElement;
+    const currentText = eTarget.textContent;
+    const highlighted = currentText?.replace(/(#\w+)/g, '<span class="hashtag">$1</span>');
+    if (highlighted) {
+      eTarget.innerHTML = highlighted;
+    }
+    placeCaretAtEnd(eTarget);
+  };
+
+  function placeCaretAtEnd(el: HTMLElement) {
+    const target = document.createTextNode('');
+    el.appendChild(target);
+    const isTargetFocused = document.activeElement === el;
+    if (target !== null && target.nodeValue !== null && isTargetFocused) {
+      const sel = window.getSelection();
+      if (sel !== null) {
+        const range = document.createRange();
+        range.setStart(target, target.nodeValue.length);
+        range.collapse(true);
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+      if (el instanceof HTMLElement) el.focus();
+    }
+  }
+
   return (
     <div className="note__container" onClick={handleclick}>
       <div className="note__header d-flex justify-content-between mb-1">
@@ -50,14 +79,24 @@ export function Note({ title, description, note }: INoteProps) {
             </button>
           </div>
         ) : (
-          <div className="note__title-container" onClick={changeEditMode}>
+          <div className="note__text-container" onClick={changeEditMode}>
             <div className="note__title">{title}</div>
             <FontAwesomeIcon className="note__header-icon note__correct" icon={faPencil} />
           </div>
         )}
         <FontAwesomeIcon className="note__header-icon note__delete" icon={faClose} size="xl" />
       </div>
-      <div className="note__description">{description}</div>
+      <div className="note__text-container">
+        <div
+          className="note__description"
+          contentEditable={true}
+          suppressContentEditableWarning={true}
+          onKeyUp={handleChange}
+        >
+          {description}
+        </div>
+        <FontAwesomeIcon className="note__header-icon note__correct" icon={faPencil} />
+      </div>
     </div>
   );
 }
