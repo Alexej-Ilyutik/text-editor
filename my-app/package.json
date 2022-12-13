@@ -1,6 +1,5 @@
 {
   "name": "my-app",
-  "homepage": "https://alexej-ilyutik.github.io/Back-end-text-editor",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -29,9 +28,7 @@
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start-js": "react-scripts start",
-    "server": "json-server -w server/db.json -p 3001",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "server": "json-server -w server/db.json -p 3001"
   },
   "eslintConfig": {
     "extends": [
