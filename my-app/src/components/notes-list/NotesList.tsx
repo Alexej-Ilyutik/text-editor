@@ -22,8 +22,6 @@ export function NotesList() {
     setIsNewTaskModalOpen(!isNewTaskModalOpen);
   };
 
-  console.log(noteFilterString);
-
   return (
     <div className="notes__container mb-4">
       {isError ? (
