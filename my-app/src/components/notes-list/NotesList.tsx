@@ -7,7 +7,7 @@ import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import { ModalCreateEl } from 'components/ModalCreateEl/ModalCreateEl';
 import { useTypedSelector } from 'hooks/useTypedSelector';
 import { INote } from 'types/types';
-import { useGetNotesListQuery } from 'store/notesListApi/notesListApi';
+import { useGetNotesListQuery } from 'store/notesApi/notesListApi';
 import { Loading } from 'components/Loading/Loading';
 import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
 

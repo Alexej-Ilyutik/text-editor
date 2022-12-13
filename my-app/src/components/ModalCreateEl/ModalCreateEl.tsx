@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { ErrorTextMessage } from 'components/ErrorTextMessage/ErrorTextMessage';
 import { CreateEl } from 'types/types';
 import { useActions } from 'hooks/useActions';
-import { useCreateNoteMutation } from 'store/notesListApi/notesListApi';
+import { useCreateNoteMutation } from 'store/notesApi/notesListApi';
 
 import './ModalCreateEl.scss';
 

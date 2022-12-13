@@ -55,6 +55,9 @@
       opacity: 1;
     }
   }
+  .correct-cursor {
+    cursor: default;
+  }
 }
 
 .note__back {
@@ -65,6 +68,6 @@
   color: var(--bs-teal);
 }
 
-.hashtag{
-  color: red;
+.hashtag {
+  color: var(--bs-primary);
 }

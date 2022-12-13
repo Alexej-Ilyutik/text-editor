@@ -1,11 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose, faPencil, faLeftLong, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 import { INote } from 'types/types';
 import { useActions } from 'hooks/useActions';
-// import { useTypedSelector } from 'hooks/useTypedSelector';
-import { useDeleteNoteMutation, useUpdateNoteMutation } from 'store/notesListApi/notesListApi';
+import { useDeleteNoteMutation, useUpdateNoteMutation } from 'store/notesApi/notesListApi';
 
 import './Note.scss';
 
@@ -17,13 +16,27 @@ interface INoteProps {
 
 export function Note({ title, description, note }: INoteProps) {
   const [deleteNote] = useDeleteNoteMutation();
-  const [changeTitle] = useUpdateNoteMutation();
+  const [changeNote] = useUpdateNoteMutation();
   const { addHashToArr } = useActions();
-
   const [isEditNote, setIsEditNote] = useState(false);
-  // const [highlighted, setHighlighted] = useState('');
-  // const [text, setText] = useState(description);
+  const [text, setText] = useState(description);
   const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
+
+  useEffect(() => {
+    setText(text.replace(/(#\w+)/g, '<span class="hashtag">$1</span>'));
+    const arr = text?.replace(/\s+/g, ' ').trim().split(' ');
+    const arrOfHash = arr?.filter((word) => word.startsWith('#'));
+    arrOfHash.forEach((hashEl) => {
+      addHashToArr({
+        hash: hashEl,
+        active: false,
+      });
+    });
+  }, []);
+
+  function createMarkup() {
+    return { __html: text };
+  }
 
   const handleclick = (event: React.MouseEvent) => {
     const eTarget = event.target as Element;
@@ -37,7 +50,7 @@ export function Note({ title, description, note }: INoteProps) {
   };
 
   const updateValue = () => {
-    changeTitle({ id: note.id, title: inputRef.current.value, description: note.description });
+    changeNote({ id: note.id, title: inputRef.current.value, description: note.description });
     changeEditMode();
   };
 
@@ -47,6 +60,13 @@ export function Note({ title, description, note }: INoteProps) {
     const highlighted = currentText?.replace(/(#\w+)/g, '<span class="hashtag">$1</span>');
     if (highlighted) {
       eTarget.innerHTML = highlighted;
+    }
+    if (currentText) {
+      changeNote({
+        id: note.id,
+        title: note.title,
+        description: currentText,
+      });
     }
     placeCaretAtEnd(eTarget);
   };
@@ -109,10 +129,12 @@ export function Note({ title, description, note }: INoteProps) {
           suppressContentEditableWarning={true}
           onKeyUp={handleChange}
           onBlur={getNoteText}
-        >
-          {description}
-        </div>
-        <FontAwesomeIcon className="note__header-icon note__correct" icon={faPencil} />
+          dangerouslySetInnerHTML={createMarkup()}
+        ></div>
+        <FontAwesomeIcon
+          className="note__header-icon note__correct correct-cursor"
+          icon={faPencil}
+        />
       </div>
     </div>
   );
