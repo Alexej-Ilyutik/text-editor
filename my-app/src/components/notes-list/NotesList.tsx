@@ -15,7 +15,6 @@ import './NotesList.scss';
 
 export function NotesList() {
   const { noteFilterString } = useTypedSelector((state) => state.noteFilterString);
-  const { noteHashArr } = useTypedSelector((state) => state.noteHashArr);
   const { isLoading, isError, data: noteList } = useGetNotesListQuery(noteFilterString);
   const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false);
 

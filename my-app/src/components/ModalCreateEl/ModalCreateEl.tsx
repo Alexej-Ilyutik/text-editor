@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 
 import { ErrorTextMessage } from 'components/ErrorTextMessage/ErrorTextMessage';
 import { CreateEl } from 'types/types';
-import { useActions } from 'hooks/useActions';
 import { useCreateNoteMutation } from 'store/notesApi/notesListApi';
 
 import './ModalCreateEl.scss';
@@ -15,7 +14,6 @@ interface ICreateElForm {
 }
 
 export function ModalCreateEl({ title, description, onHideModal }: ICreateElForm) {
-  // const { addNote } = useActions();
   const [addNote] = useCreateNoteMutation();
 
   const {
@@ -27,7 +25,6 @@ export function ModalCreateEl({ title, description, onHideModal }: ICreateElForm
   const onSubmitHandler = (data: CreateEl) => {
     onHideModal();
     addNote({ title: data.title, description: data.description });
-    // addNote({ id: new Date().getTime(), title: data.title, description: data.description });
   };
 
   return (

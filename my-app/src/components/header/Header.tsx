@@ -21,8 +21,8 @@ export function Header() {
               <Nav.Link className="navbar__link" as={Link} to="/">
                 Note editor
               </Nav.Link>
-              <Nav.Link className="navbar__link" as={Link} to="/about-me">
-                About me
+              <Nav.Link className="navbar__link" as={Link} to="/about">
+                About
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
