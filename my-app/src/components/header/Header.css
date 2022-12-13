@@ -1,0 +1,17 @@
+.header__navbar {
+  transition: 0.5s;
+  padding-left: 0.5rem;
+  background-color: var(--header-bg); }
+  .header__navbar .navbar__logo {
+    font-size: 1.1rem; }
+    .header__navbar .navbar__logo:hover {
+      color: var(--nav-color); }
+  .header__navbar .navbar__item {
+    max-width: 12rem;
+    justify-content: space-between; }
+    .header__navbar .navbar__item .navbar__link-container .navbar__link {
+      padding-left: 6px;
+      font-weight: 500;
+      color: var(--text-color); }
+      .header__navbar .navbar__item .navbar__link-container .navbar__link:hover {
+        color: var(--nav-color); }
