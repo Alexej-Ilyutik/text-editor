@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClose, faPencil, faLeftLong, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 import { INote } from 'types/types';
+import { useActions } from 'hooks/useActions';
+// import { useTypedSelector } from 'hooks/useTypedSelector';
 import { useDeleteNoteMutation, useUpdateNoteMutation } from 'store/notesListApi/notesListApi';
 
 import './Note.scss';
@@ -16,10 +18,11 @@ interface INoteProps {
 export function Note({ title, description, note }: INoteProps) {
   const [deleteNote] = useDeleteNoteMutation();
   const [changeTitle] = useUpdateNoteMutation();
+  const { addHashToArr } = useActions();
 
   const [isEditNote, setIsEditNote] = useState(false);
   // const [highlighted, setHighlighted] = useState('');
-  const [text, setText] = useState(description);
+  // const [text, setText] = useState(description);
   const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const handleclick = (event: React.MouseEvent) => {
@@ -38,7 +41,7 @@ export function Note({ title, description, note }: INoteProps) {
     changeEditMode();
   };
 
-  const handleChange = function (e: React.KeyboardEvent<HTMLInputElement>) {
+  const handleChange = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const eTarget = e.target as HTMLInputElement;
     const currentText = eTarget.textContent;
     const highlighted = currentText?.replace(/(#\w+)/g, '<span class="hashtag">$1</span>');
@@ -48,7 +51,7 @@ export function Note({ title, description, note }: INoteProps) {
     placeCaretAtEnd(eTarget);
   };
 
-  function placeCaretAtEnd(el: HTMLElement) {
+  const placeCaretAtEnd = (el: HTMLElement) => {
     const target = document.createTextNode('');
     el.appendChild(target);
     const isTargetFocused = document.activeElement === el;
@@ -63,7 +66,20 @@ export function Note({ title, description, note }: INoteProps) {
       }
       if (el instanceof HTMLElement) el.focus();
     }
-  }
+  };
+
+  const getNoteText = (e: React.FocusEvent<HTMLDivElement, Element>) => {
+    const arr = e.target.textContent?.replace(/\s+/g, ' ').trim().split(' ');
+    const arrOfHash = arr?.filter((word) => word.startsWith('#'));
+    if (arrOfHash) {
+      arrOfHash.forEach((hashEl) => {
+        addHashToArr({
+          hash: hashEl,
+          active: false,
+        });
+      });
+    }
+  };
 
   return (
     <div className="note__container" onClick={handleclick}>
@@ -92,6 +108,7 @@ export function Note({ title, description, note }: INoteProps) {
           contentEditable={true}
           suppressContentEditableWarning={true}
           onKeyUp={handleChange}
+          onBlur={getNoteText}
         >
           {description}
         </div>

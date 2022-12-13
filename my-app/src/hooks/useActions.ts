@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { noteListActions } from 'store/action-creators/noteListActions';
+import { noteHashArrActions } from 'store/action-creators/noteHashActions';
 
 const actions = {
-  ...noteListActions,
+  ...noteHashArrActions,
 };
 
 export const useActions = () => {

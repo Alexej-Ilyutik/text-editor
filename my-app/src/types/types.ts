@@ -4,6 +4,11 @@ export interface INote {
   description: string;
 }
 
+export interface IHash {
+  hash: string;
+  active: boolean;
+}
+
 export interface CreateEl {
   title: string;
   description: string;

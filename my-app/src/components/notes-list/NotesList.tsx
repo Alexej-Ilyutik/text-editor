@@ -22,7 +22,7 @@ export function NotesList() {
   };
 
   return (
-    <div className="notes__container">
+    <div className="notes__container mb-4">
       {isError ? (
         <ErrorMessage message="Something went wrong..." />
       ) : (

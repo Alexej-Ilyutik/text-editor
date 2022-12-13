@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import { notesListApi } from 'store/notesListApi/notesListApi';
-// import { noteListReducer } from 'store/action-creators/noteListActions';
+import { noteHashArrReducer } from 'store/action-creators/noteHashActions';
 
 export const rootReducer = combineReducers({
   [notesListApi.reducerPath]: notesListApi.reducer,
-  // noteList: noteListReducer,
+  noteHashArr: noteHashArrReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
