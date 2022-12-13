@@ -1,0 +1,25 @@
+.header__navbar {
+  transition: 0.5s;
+  padding-left: 0.5rem;
+  background-color: var(--header-bg);
+  .navbar__logo {
+    font-size: 1.1rem;
+    &:hover {
+      color: var(--nav-color);
+    }
+  }
+  .navbar__item {
+    max-width: 12rem;
+    justify-content: space-between;
+    .navbar__link-container {
+      .navbar__link {
+        padding-left: 6px;
+        font-weight: 500;
+        color: var(--text-color);
+        &:hover {
+          color: var(--nav-color);
+        }
+      }
+    }
+  }
+}

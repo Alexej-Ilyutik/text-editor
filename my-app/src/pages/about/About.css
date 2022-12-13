@@ -1,0 +1,6 @@
+.about__list {
+  font-size: 1.6rem;
+  max-width: 40rem;
+  margin: 0 auto; }
+  .about__list .about__item {
+    font-size: 1.4rem; }
