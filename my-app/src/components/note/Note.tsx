@@ -24,8 +24,8 @@ export function Note({ title, description, note }: INoteProps) {
 
   useEffect(() => {
     setText(text.replace(/(#\w+)/g, '<span class="hashtag">$1</span>'));
-    const arr = text?.replace(/\s+/g, ' ').trim().split(' ');
-    const arrOfHash = arr?.filter((word) => word.startsWith('#'));
+    const arrOfWordsDescription = text?.replace(/\s+/g, ' ').trim().split(' ');
+    const arrOfHash = arrOfWordsDescription?.filter((word) => word.startsWith('#'));
     arrOfHash.forEach((hashEl) => {
       addHashToArr({
         hash: hashEl,

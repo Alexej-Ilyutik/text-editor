@@ -3,11 +3,8 @@ import { notesApi } from './notesApi';
 
 export const notesListApi = notesApi.injectEndpoints({
   endpoints: (builder) => ({
-    getNotesList: builder.query<INote[], void>({
-      query: () => ({
-        url: 'noteList',
-        method: 'GET',
-      }),
+    getNotesList: builder.query<INote[], string>({
+      query: (hash = '') => `noteList?${hash && `${hash}`}`,
       providesTags: ['NoteTag'],
     }),
     createNote: builder.mutation<INote, { title: string; description: string }>({

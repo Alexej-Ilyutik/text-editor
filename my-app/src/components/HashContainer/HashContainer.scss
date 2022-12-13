@@ -23,12 +23,12 @@
     touch-action: manipulation;
     white-space: nowrap;
     &:hover {
-      background-image: linear-gradient(-180deg, #1d95c9 0%, #17759c 100%);
+      background-image: linear-gradient(-180deg, #2498c9 0%, #136081 100%);
     }
   }
   .btn-active {
     box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 8px;
-    background-image: linear-gradient(-180deg, #1d95c9 0%, #17759c 100%);
-    transform: scale(0.95);
+    background-image: linear-gradient(-180deg, #2498c9 0%, #136081 100%);
+    transform: scale(0.9);
   }
 }

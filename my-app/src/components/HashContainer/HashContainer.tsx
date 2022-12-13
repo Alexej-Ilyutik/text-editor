@@ -8,10 +8,15 @@ import './HashContainer.scss';
 
 export function HashContainer() {
   const { noteHashArr } = useTypedSelector((state) => state.noteHashArr);
-  const { changeActive } = useActions();
+  const { changeActive, addFilterToString, deleteFilterFromString } = useActions();
 
   const changeActiveVisible = (hash: IHash) => {
     changeActive(hash);
+    if (!hash.active) {
+      addFilterToString(hash.hash.slice(1));
+    } else {
+      deleteFilterFromString(hash.hash.slice(1) + '&');
+    }
   };
 
   return (

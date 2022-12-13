@@ -16,13 +16,13 @@ export const noteHashArrActionsCreator = createSlice({
   reducers: {
     addHashToArr(state, action: PayloadAction<IHash>) {
       const arr = [...state.noteHashArr, action.payload];
-      const uniqueArr = arr.reduce((o: IHash[], i: IHash) => {
-        if (!o.find((v) => v['hash'] === i.hash)) {
-          o.push(i);
+      const uniqueArr = arr.reduce((array: IHash[], i: IHash) => {
+        if (!array.find((v) => v['hash'] === i.hash)) {
+          array.push(i);
         }
-        return o;
+        return array;
       }, []);
-      state.noteHashArr = [...uniqueArr];
+      state.noteHashArr = uniqueArr;
     },
     changeActive(state, action: PayloadAction<IHash>) {
       const newArr = state.noteHashArr.map((obj) =>

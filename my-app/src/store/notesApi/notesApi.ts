@@ -5,6 +5,6 @@ export const notesApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:3001/',
   }),
-  tagTypes: ['NoteTag', 'HashTag'],
+  tagTypes: ['NoteTag'],
   endpoints: () => ({}),
 });

@@ -14,12 +14,16 @@ import { ErrorMessage } from 'components/ErrorMessage/ErrorMessage';
 import './NotesList.scss';
 
 export function NotesList() {
-  const { isLoading, isError, data: noteList } = useGetNotesListQuery();
+  const { noteFilterString } = useTypedSelector((state) => state.noteFilterString);
+  const { noteHashArr } = useTypedSelector((state) => state.noteHashArr);
+  const { isLoading, isError, data: noteList } = useGetNotesListQuery(noteFilterString);
   const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false);
 
   const handleCloseNewTaskModal = () => {
     setIsNewTaskModalOpen(!isNewTaskModalOpen);
   };
+
+  console.log(noteFilterString);
 
   return (
     <div className="notes__container mb-4">
